@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PersonnageController;
+use App\Models\Personnage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,6 @@ use Illuminate\Support\Facades\Route;
     });
 
 
-Route::resource('personnage', PersonnageController::class);
+    Route::resource('personnage', PersonnageController::class);
+
+    Route::get('/organisation/{type}',[PersonnageController::class, 'index'])->name("personnage.organisation");

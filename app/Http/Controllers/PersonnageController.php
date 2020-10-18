@@ -16,10 +16,13 @@ class PersonnageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = null)
     {
-
         $users = Personnage::all();
+        if($type)
+            {
+                $users = Personnage::orderBy($type)->get();
+            }       
         
         foreach($users as $user)
         {
@@ -27,6 +30,8 @@ class PersonnageController extends Controller
             $user->classetype = new $patch($user->specialisation->specialisation);
         }
         
+       
+
         return view("personnage/index", ['personnages' => $users]);
     }
 

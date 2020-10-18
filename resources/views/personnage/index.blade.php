@@ -16,6 +16,17 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+
+    <div class="d-flex">
+        <div class="nav justify-content-center mb-3 mt-1" >
+            <a class="btn btn-primary btn-lg rigth" href="/organisation/classe_id"> Classe</a>
+        </div>
+        <div class="nav justify-content-center mb-3 mt-1" >
+            <a class="btn btn-primary btn-lg rigth" href="/organisation/specialisation_id">Specialisation</a>
+        </div>
+    </div>
+
+
     <div class="nav justify-content-center mb-3 mt-1" >
         <a class="btn btn-primary btn-lg rigth" href="{{ route('personnage.create') }}" title="Ajouter un personnage"> Ajouter</a>
     </div>
