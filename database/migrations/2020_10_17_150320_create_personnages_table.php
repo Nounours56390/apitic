@@ -16,11 +16,12 @@ class CreatePersonnagesTable extends Migration
         Schema::create('personnages', function (Blueprint $table) {
             $table->id();
             $table->string("pseudo");
-            $table->integer("race");
-            $table->integer("classe");
-            $table->integer("specialisation");
-            $table->integer("armure");
+            $table->integer("race_id");
+            $table->integer("classe_id");
+            $table->integer("specialisation_id");
+            $table->integer("armure_id");
             $table->string("proprietaire");
+            $table->timestamps();
         });
     }
 

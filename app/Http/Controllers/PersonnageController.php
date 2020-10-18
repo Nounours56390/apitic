@@ -18,14 +18,15 @@ class PersonnageController extends Controller
      */
     public function index()
     {
+
         $users = Personnage::all();
+        
         foreach($users as $user)
         {
-            $user->armure = Armure::find($user->armure)->armure;
-            $user->classe = Classe::find($user->classe)->classe;
-            $user->race = Race::find($user->race)->race;
-            $user->specialisation = Specialisation::find($user->specialisation)->specialisation;
+            $patch = "App\\Classes\\".$user->classe->classe;
+            $user->classetype = new $patch($user->specialisation->specialisation);
         }
+        
         return view("personnage/index", ['personnages' => $users]);
     }
 
@@ -36,7 +37,11 @@ class PersonnageController extends Controller
      */
     public function create()
     {
-        return view("personnage/create");
+        $races = Race::all();
+        $classes = Classe::all();
+        $specialisations = Specialisation::all();
+        $armures = Armure::all();
+        return view("personnage/create", ['races'=>$races, 'classes'=>$classes, 'specialisations'=>$specialisations, 'armures'=>$armures]);
     }
 
     /**
@@ -47,7 +52,16 @@ class PersonnageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pseudo' => 'required',
+            'race_id' => 'required',
+            'classe_id' => 'required',
+            'specialisation_id' => 'required',
+            'armure_id' => 'required',
+            'proprietaire' => 'required',
+        ]);
+            Personnage::create($request->all());
+        return redirect()->route('personnage.index');
     }
 
     /**

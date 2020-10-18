@@ -15,7 +15,7 @@ class CreateSpecialisationsTable extends Migration
     {
         Schema::create('specialisations', function (Blueprint $table) {
             $table->id();
-            $table->integer("classe");
+            $table->integer("classe_id");
             $table->string("specialisation")->unique();
         });
     }

@@ -17,14 +17,40 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-
-        @foreach ($personnages as $personnage)
-            <p>{{$personnage->pseudo}}</p>
-            <p>{{$personnage->classe}}</p>
-            <p>{{$personnage->race}}</p>
-            <p>{{$personnage->specialisation}}</p>
-            <p>{{$personnage->armure}}</p>
-            <p>{{$personnage->proprietaire}}</p>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Race</th>
+            <th scope="col">Classe</th>
+            <th scope="col">Specialisation</th>
+            <th scope="col">Armure</th>
+            <th scope="col">Proprietaire</th>
+            <th scope="col">Detail</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($personnages as $personnage)
+            <tr>
+                <td>{{$personnage->pseudo}}</td>
+            <td style="background-color: {{$personnage->classetype->color}}">{{$personnage->race->race}}</td>
+                <td style="background-color: {{$personnage->classetype->color}}">{{$personnage->classe->classe}}</td>
+                <td  style="background-color: {{$personnage->classetype->color}}">{{$personnage->specialisation->specialisation}}</td>
+                <td  style="background-color: {{$personnage->classetype->color}}">{{$personnage->armure->armure}}</td>
+                <td  style="background-color: {{$personnage->classetype->color}}">{{$personnage->proprietaire}}</td>
+            <td  style="background-color: {{$personnage->classetype->color}}"> Je suis un {{$personnage->classetype->getClasseName()}} et mon {{$personnage->classetype->getTypeSort()}} préféré est {{$personnage->classetype->getCoupFav()}}</td>
+            <td>  {{$personnage->classetype->cologgr()}}</td>
+            <td>
+                <div>
+                    <button>Modifier</button>
+                    <button >Supprimer</button>
+                </div>
+            </td>
+              </tr>
         @endforeach
+        </tbody>
+      </table>
+
 
 @endsection
