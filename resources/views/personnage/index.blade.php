@@ -75,7 +75,7 @@
                         @csrf
                         {{method_field('DELETE')}}
                         <button type="submit" class="justify-content-center btn btn-primary btn-lg btn-block"
-                            onclick="return confirm('Voulez vous vraiment coucher avec moi?');">Supprimer</button>
+                            onclick="return confirm('Voulez vous vraiment supprimer ce personnage?');">Supprimer</button>
                     </form>
                 </div>
             </td>

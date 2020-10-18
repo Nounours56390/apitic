@@ -17,6 +17,7 @@ class CreateSpecialisationsTable extends Migration
             $table->id();
             $table->integer("classe_id");
             $table->string("specialisation")->unique();
+            $table->timestamps();
         });
     }
 
