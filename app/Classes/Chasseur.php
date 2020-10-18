@@ -2,7 +2,9 @@
  
 namespace App\Classes;
 
-  class Chasseur
+use Swift;
+
+class Chasseur
   {
     public $spe;
     public $vie = "50";
@@ -37,5 +39,4 @@ namespace App\Classes;
     {
       return "Je suis un chasseur avec la specialisation ".$this->spe;
     }
-
   }

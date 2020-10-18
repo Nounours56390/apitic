@@ -61,7 +61,7 @@ class PersonnageController extends Controller
             'proprietaire' => 'required',
         ]);
             Personnage::create($request->all());
-        return redirect()->route('personnage.index');
+            return redirect()->route('personnage.index')->with('message', 'Personnage crée');
     }
 
     /**
@@ -83,7 +83,11 @@ class PersonnageController extends Controller
      */
     public function edit(Personnage $personnage)
     {
-        //
+        $races = Race::all();
+        $classes = Classe::all();
+        $specialisations = Specialisation::all();
+        $armures = Armure::all();
+        return view("personnage/edit", ['races'=>$races, 'classes'=>$classes, 'specialisations'=>$specialisations, 'armures'=>$armures, 'values'=>$personnage]);
     }
 
     /**
@@ -95,7 +99,16 @@ class PersonnageController extends Controller
      */
     public function update(Request $request, Personnage $personnage)
     {
-        //
+        $request->validate([
+            'pseudo' => 'required',
+            'race_id' => 'required',
+            'classe_id' => 'required',
+            'specialisation_id' => 'required',
+            'armure_id' => 'required',
+            'proprietaire' => 'required',
+        ]);
+        $personnage->update($request->all());
+        return redirect()->route('personnage.index')->with('message', 'Personnage bien modifier');
     }
 
     /**
@@ -106,6 +119,7 @@ class PersonnageController extends Controller
      */
     public function destroy(Personnage $personnage)
     {
-        //
+        $personnage->delete();
+        return redirect()->route('personnage.index')->with('message', 'Personnage suprimer');
     }
 }
